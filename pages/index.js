@@ -10,7 +10,7 @@ export default function Home({ posts }) {
   return (
     <div>
       <Head>
-        <title>Notion Next.js blog</title>
+        <title>Rodrigo Pasini | Dev Blog</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -47,28 +47,30 @@ export default function Home({ posts }) {
               </g>
             </svg>
           </div>
-          <h1>Next.js blog powered by Notion API</h1>
+          <h1>Blog Rodrigo Dev</h1>
           <p>
-            This is an example of a Next.js blog with data fetched with Notions
-            API. The data comes from{" "}
-            <a href={`https://www.notion.so/${databaseId}`}>this table</a>. Get
-            the source code on{" "}
-            <a href="https://github.com/samuelkraft/notion-blog-nextjs">
-              Github
-            </a>{" "}
-            or read{" "}
-            <a href="https://samuelkraft.com/blog/building-a-notion-blog-with-public-api">
-              my blogpost
-            </a>{" "}
-            on building your own.
+            Informações do meu dia a dia como responsável em tecnologia em uma Venture Builder
+            {/*This is an example of a Next.js blog with data fetched with Notions*/}
+            {/*API. The data comes from{" "}*/}
+            {/*<a href={`https://www.notion.so/${databaseId}`}>this table</a>. Get*/}
+            {/*the source code on{" "}*/}
+            {/*<a href="https://github.com/samuelkraft/notion-blog-nextjs">*/}
+            {/*  Github*/}
+            {/*</a>{" "}*/}
+            {/*or read{" "}*/}
+            {/*<a href="https://samuelkraft.com/blog/building-a-notion-blog-with-public-api">*/}
+            {/*  my blogpost*/}
+            {/*</a>{" "}*/}
+            {/*on building your own.*/}
           </p>
         </header>
 
-        <h2 className={styles.heading}>All Posts</h2>
+        <h2 className={styles.heading}>Todas postagens</h2>
         <ol className={styles.posts}>
           {posts.map((post) => {
+
             const date = new Date(post.last_edited_time).toLocaleString(
-              "en-US",
+              "pt-BR",
               {
                 month: "short",
                 day: "2-digit",
@@ -84,10 +86,14 @@ export default function Home({ posts }) {
                     </a>
                   </Link>
                 </h3>
-
-                <p className={styles.postDescription}>{date}</p>
+                <p className={styles.postDate}>{date}</p>
+                {
+                  post.properties.Resumo.rich_text.length === 0
+                    ? ''
+                    :<p className={styles.postDescription}>{post.properties.Resumo.rich_text[0].text.content}</p>
+                }
                 <Link href={`/${post.id}`}>
-                  <a> Read post →</a>
+                  <a> Ver postagem →</a>
                 </Link>
               </li>
             );
